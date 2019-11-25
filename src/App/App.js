@@ -9,6 +9,7 @@ import NotefulContext from '../NotefulContext'
 import config from '../config'
 import RouteError from '../RouteError/RouteError'
 import AddFolder from '../AddFolder/AddFolder'
+import AddNote from '../AddNote/AddNote'
 import './App.css';
 
 class App extends Component {
@@ -73,7 +74,7 @@ class App extends Component {
                 ))}
                 <Route path="/note/:noteId" component={NotePageMain} />
                 <Route path="/add-folder" component={AddFolder} />
-                <Route path="/add-folder" component={AddNote} />
+                <Route path="/add-note" component={AddNote} />
             </RouteError>
         );
     }
