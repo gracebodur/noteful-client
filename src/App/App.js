@@ -8,6 +8,7 @@ import NotePageMain from '../NotePageMain/NotePageMain';
 import NotefulContext from '../NotefulContext'
 import config from '../config'
 import RouteError from '../routeError'
+import Addfolder from '../AddFolder/AddFolder'
 import './App.css';
 
 class App extends Component {

@@ -4,12 +4,12 @@ class RouteError extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hasError: false
+            hasError: true
         }
     }
 
     static getDerivedStatedfromError() {
-        return { hasError: true};
+        return { hasError: false};
     }
 
     render() {
