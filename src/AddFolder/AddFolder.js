@@ -13,13 +13,13 @@ constructor(props) {
     this.state={
         folderName: {
         value: '',
-        touched: false
+        touched: true
     }
     }
 }
 
 updateFolderName(name) {
-    this.setState({folderName: {value: name, touched: true}})
+    this.setState({folderName: {value: name, touched: false}})
 }
 
 handleSubmit(event) {
