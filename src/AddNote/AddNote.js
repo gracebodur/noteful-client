@@ -2,14 +2,14 @@ import React from 'react'
 import ValidationError from '../ValidationError'
 import NotefulContext from '../NotefulContext'
 import config from '../config'
-import './addNote.css'
+import '../AddNote/addNote.css'
 
 class AddNote extends React.Component {
   
     static contextType = NotefulContext
   
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state={
             title: {
                 value: '',
@@ -31,6 +31,9 @@ class AddNote extends React.Component {
     updateNoteContent(content) {
         this.setState({content: {value:content, touched: true}})
     }
+    updateNoteFolder(id) {
+        this.setState({folder: {value:id, touched: true}})
+    }
 
     handleSubmit(event) {
         event.preventDefault()
@@ -38,6 +41,7 @@ class AddNote extends React.Component {
         const noteToAdd = {
             name: title.value,
             content: content.value,
+            folder: Number(folder.value),
             folderId: folder.value,
             modified: new Date ()
         }
@@ -78,22 +82,30 @@ class AddNote extends React.Component {
     validateContentName() {
         const content = this.state.content.value.trim()
         if(content.length === 0) {
-            return 'Content i required'
+            return 'Content is required'
         }else if (content.length > 500) {
             return 'Content must be less than 500 characters.'
         }
     }
 
+    validateFolderName() {
+        const name = this.state.folder.value.trim()
+        if(name.length === 0) {
+            return 'Folder name is required'
+        }
+    }
+
 
     render() {
-        const titleError = this.validateNoteName
-        const contentNameError = this.validateContentName
+        const titleError = this.validateNoteName()
+        const contentNameError = this.validateContentName()
+        const folderNameError = this.validateFolderName()
         return(
             <section>
                 <form className='add-note' onSubmit={ e => this.handleSubmit(e)}>
                     <h2>Create Note</h2>
                     <div>
-                        <label html for='note-name'>Name</label>
+                        <label htmlFor='note-name'>Name</label>
                         <input type = 'text' name='note-name' id = 'note-name' onChange={e => this.updateNoteName(e.target.value)}></input>
                         {this.state.title.touched && <ValidationError message={titleError} />}
                     </div>
@@ -102,6 +114,21 @@ class AddNote extends React.Component {
                         <textarea name='content-name' id='content-name' onChange={e => this.updateNoteContent(e.target.value)}/>
                         {this.state.content.touched && <ValidationError message={contentNameError} />}
                     </div>
+                    <div className='form-group'>
+                        <label htmlFor= 'folder-select'>Choose a folder:</label>
+                        <select name='folder-select' onChange={e => this.updateNoteFolder(e.target.value)}>
+                            <option value=''>Please select a folder</option>
+                            {this.context.folders.map(folder => {
+                                return (
+                                <option key={folder.id} value={folder.id}>{folder.name}</option>
+                                )
+                            })}
+                        </select>
+                            {this.state.folder.touched && <ValidationError message = {folderNameError} />}
+                    </div>
+                    <button className = 'add-note-button' disabled={this.validateNoteName() || this.validateContentName() || this.validateFolderName()}>
+                        AddNote
+                    </button>
                 </form>
             </section>
         )

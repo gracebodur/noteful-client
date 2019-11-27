@@ -7,6 +7,7 @@ import NotefulContext from '../NotefulContext'
 import { getNotesForFolder } from '../notes-helpers'
 import PropTypes from 'prop-types'
 import './NoteListMain.css'
+import config from '../config'
 
 export default class NoteListMain extends React.Component {
   static defaultProps = {
@@ -16,6 +17,30 @@ export default class NoteListMain extends React.Component {
   }
 
   static contextType = NotefulContext
+
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/notes`)
+      .then(notes => {
+        if(!notes.ok) {
+          return notes.json().then(e => Promise.reject(e));
+        }
+        return notes.json()
+      })
+      .then(notesRes => {
+        this.setState({notes: notesRes})
+      })
+      .catch(error => {
+        console.error({error})
+      })
+  }
+
+  handleDeleteNote = noteId => {
+    this.props.history.push('/')
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !==noteId)
+    })
+  }
+
   render() {
     const { folderId } = this.props.match.params
     const { notes=[] } = this.context
@@ -29,6 +54,7 @@ export default class NoteListMain extends React.Component {
               id={note.id}
               name={note.name}
               modified={note.modified}
+              onDeleteNote={this.handleDeleteNote}
             />
           </li>
         )}

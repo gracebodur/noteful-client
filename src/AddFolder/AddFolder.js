@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import ValidationError from '../ValidationError'
 import config from '../config';
 import NotefulContext from '../NotefulContext';
-import './addFolder.css'
+import '../AddFolder/addFolder.css'
 
 
 export default class AddFolder extends Component {
@@ -14,13 +14,13 @@ constructor(props) {
     this.state={
         folderName: {
         value: '',
-        touched: true
+        touched: false
     }
     }
 }
 
 updateFolderName(name) {
-    this.setState({folderName: {value: name, touched: false}})
+    this.setState({folderName: {value: name, touched: true}})
 }
 
 handleSubmit(event) {
