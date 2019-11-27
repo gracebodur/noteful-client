@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ValidationError from '../ValidationError'
 import config from '../config';
 import NotefulContext from '../NotefulContext';
+import './addFolder.css'
 
 
 export default class AddFolder extends Component {
