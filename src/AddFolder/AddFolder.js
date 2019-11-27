@@ -54,6 +54,7 @@ handleSubmit(event) {
 
 validateFolderName() {
     const name = this.state.folderName.value.trim();
+    // console.log(name)
     if(name.length === 0) {
     return 'Folder name is required'
     } else if (name.length > 20) {
@@ -71,10 +72,18 @@ render() {
             <label htmlFor="folder-name">
             Name
             </label>
-            <input type="text" className="folder-input" name="folder-name" id="folder-name" onChange={e => this.updateFolderName(e.target.value)}>
+            <input 
+                type="text" 
+                className="folder-input" 
+                name="folder-name" 
+                id="folder-name" 
+                onChange={e => this.updateFolderName(e.target.value)}>
             </input>
-            {this.state.folderName.touched && <ValidationError message={folderNameError} />}
-            <button type="submit" className="add-folder-button" disabled={this.validateFolderName()}>Add Folder</button>
+                {this.state.folderName.touched && <ValidationError message={folderNameError} />}
+            <button 
+                type="submit" 
+                className="add-folder-button" 
+                disabled={this.validateFolderName()}>Add Folder</button>
         </div>
         </form>
     </section>

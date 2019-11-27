@@ -27,6 +27,18 @@ class AddNote extends React.Component {
     updateNoteName(name) {
         this.setState({title: {value: name, touched: true}})
     }
+    updateNoteContent(content) {
+        this.setState({content: {value:content, touched: true}})
+    }
+    render() {
+        return(
+            <div>
+                <form>
+                    <h2>Create Note</h2>
+                </form>
+            </div>
+        )
+    }
 
 }
 
