@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ValidationError from '../ValidationError'
 import config from '../config';
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types'
 import '../AddFolder/addFolder.css'
 
 
@@ -92,3 +93,6 @@ render() {
 }
 }
 
+AddFolder.propTypes = {
+    history: PropTypes.object
+}

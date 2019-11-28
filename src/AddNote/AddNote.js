@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationError from '../ValidationError'
 import NotefulContext from '../NotefulContext'
 import config from '../config'
+import PropTypes from 'prop-types'
 import '../AddNote/addNote.css'
 
 class AddNote extends React.Component {
@@ -137,3 +138,8 @@ class AddNote extends React.Component {
 }
 
 export default AddNote
+
+AddNote.propTypes = {
+    match: PropTypes.object,
+    history: PropTypes.object
+}
