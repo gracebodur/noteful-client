@@ -93,6 +93,6 @@ render() {
 }
 }
 
-AddFolder.propTypes = {
-    history: PropTypes.object
+AddFolder.prototypes = {
+    folderName: PropTypes.string.isRequired
 }

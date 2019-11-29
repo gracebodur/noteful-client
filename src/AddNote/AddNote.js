@@ -140,6 +140,10 @@ class AddNote extends React.Component {
 export default AddNote
 
 AddNote.propTypes = {
-    match: PropTypes.object,
-    history: PropTypes.object
+    folders: PropTypes.arrayOf(PropTypes.shape({
+        folder: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired
+    }))
+    
 }
