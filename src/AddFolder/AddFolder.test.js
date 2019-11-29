@@ -1,6 +1,9 @@
-// import React from 'react'
-// import {shallow} from 'enzyme'
-// import {toJson} from 'enzyme-to-json'
-// import AddFolder from './AddFolder'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import AddFolder from './AddFolder'
 
-// it(`renders without crashing`, )
+it(`renders without crashing`, () => {
+    const form = document.createElement('form')
+    ReactDOM.render(<AddFolder />, form)
+    ReactDOM.unmountComponentAtNode(form)
+})
