@@ -76,7 +76,7 @@ render() {
                 type="text" 
                 className="Add-folder-input" 
                 name="folder-name" 
-                id="folder-name" 
+                id= "folder-name" 
                 onChange={e => this.updateFolderName(e.target.value)}
                 aria-required='true'
                 aria-describedby= {folderNameError}
