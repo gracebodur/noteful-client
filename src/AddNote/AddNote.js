@@ -1,4 +1,5 @@
 import React from 'react'
+import {Fragment} from 'react'
 import ValidationError from '../ValidationError'
 import NotefulContext from '../NotefulContext'
 import config from '../config'
@@ -103,31 +104,61 @@ class AddNote extends React.Component {
         const folderNameError = this.validateFolderName()
         return(
             <section>
-                <form className='add-note' onSubmit={ e => this.handleSubmit(e)}>
+                <form className='Add-note' onSubmit={ e => this.handleSubmit(e)}>
                     <h2>Create Note</h2>
-                    <div>
-                        <label htmlFor='note-name'>Name</label>
-                        <input type = 'text' name='note-name' id = 'note-name' onChange={e => this.updateNoteName(e.target.value)}></input>
+                    <Fragment>
+                        <label htmlFor='note-name' className='Add-note-text'>Name</label>
+                        <br />
+                        <input 
+                            className='Add-note-input'
+                            type = 'text' 
+                            name='note-name' 
+                            id = 'note-name' 
+                            onChange={e => this.updateNoteName(e.target.value)}
+                            aria-required='true'
+                            aria-describedby= {titleError}
+                            aria-label= 'Enter note name'>
+                        </input>
                         {this.state.title.touched && <ValidationError message={titleError} />}
-                    </div>
-                    <div>
+                        <br />
+                    </Fragment>
+                   
+
+                    <Fragment>
                         <label htmlFor='content-name'>Content</label>
-                        <textarea name='content-name' id='content-name' onChange={e => this.updateNoteContent(e.target.value)}/>
+                        <br />
+                        <textarea
+                            className='Add-note-content-text'
+                            name='content-name' 
+                            id='content-name' 
+                            onChange={e => this.updateNoteContent(e.target.value)}/>
                         {this.state.content.touched && <ValidationError message={contentNameError} />}
-                    </div>
+                    </Fragment>
+                   
+
                     <div className='form-group'>
-                        <label htmlFor= 'folder-select'>Choose a folder:</label>
-                        <select name='folder-select' onChange={e => this.updateNoteFolder(e.target.value)}>
-                            <option value=''>Please select a folder</option>
-                            {this.context.folders.map(folder => {
-                                return (
-                                <option key={folder.id} value={folder.id}>{folder.name}</option>
-                                )
-                            })}
-                        </select>
-                            {this.state.folder.touched && <ValidationError message = {folderNameError} />}
+                    <label htmlFor= 'folder-select'>Choose a folder</label> <br />
+                    <select 
+                        name='folder-select' 
+                        onChange={e => this.updateNoteFolder(e.target.value)}>
+                        <option value=''>Please select a folder</option>
+                        {this.context.folders.map(folder => {
+                return (
+                    <option 
+                        key={folder.id} 
+                        value={folder.id}>{folder.name}
+                    </option>
+                            )
+                    })}
+                    </select>
+                        {this.state.folder.touched && <ValidationError message = {folderNameError} />}
                     </div>
-                    <button className = 'add-note-button' disabled={this.validateNoteName() || this.validateContentName() || this.validateFolderName()}>
+                    <br />
+                    <button 
+                        className = 'Add-note-button' 
+                        disabled={this.validateNoteName() || 
+                        this.validateContentName() || 
+                        this.validateFolderName()}>
                         AddNote
                     </button>
                 </form>

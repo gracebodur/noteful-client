@@ -68,23 +68,27 @@ render() {
     const folderNameError = this.validateFolderName();
     return (
     <section>
-        <form className="add-folder" onSubmit={event => this.handleSubmit(event)}>
+        <form className="Add-folder" onSubmit={event => this.handleSubmit(event)}>
         <h2>Create Folder</h2>
         <div className="form-group">
-            <label htmlFor="folder-name">
-            Name
-            </label>
+            <label htmlFor="Add-folder-name">Name</label><br />
             <input 
                 type="text" 
-                className="folder-input" 
+                className="Add-folder-input" 
                 name="folder-name" 
                 id="folder-name" 
-                onChange={e => this.updateFolderName(e.target.value)}>
+                onChange={e => this.updateFolderName(e.target.value)}
+                aria-required='true'
+                aria-describedby= {folderNameError}
+                aria-label= 'Enter folder name'>
             </input>
-                {this.state.folderName.touched && <ValidationError message={folderNameError} />}
+            {this.state.folderName.touched && 
+            <ValidationError 
+                message={folderNameError} />}
+            <br />
             <button 
                 type="submit" 
-                className="add-folder-button" 
+                className="Add-folder-button" 
                 disabled={this.validateFolderName()}>Add Folder</button>
         </div>
         </form>
