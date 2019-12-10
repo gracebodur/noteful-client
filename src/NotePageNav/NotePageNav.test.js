@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import NoteListNav from './NoteListNav'
+import NotePageNav from './NotePageNav'
 
-describe(`NoteListNav component`, () => {
-  it('renders a .NoteListNav by default', () => {
-    const wrapper = shallow(<NoteListNav />)
+describe(`NotePageNav component`, () => {
+  it('renders a NotePageNav by default', () => {
+    const wrapper = shallow(<NotePageNav />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
@@ -57,7 +57,7 @@ describe(`NoteListNav component`, () => {
         }
       ]
     }
-    const ul = shallow(<NoteListNav />, context)
+    const ul = shallow(<NotePageNav />, context)
       .find('ul')
     expect(toJson(ul)).toMatchSnapshot()
   })
