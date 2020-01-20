@@ -3,10 +3,15 @@ import ValidationError from '../ValidationError'
 import config from '../config';
 import NotefulContext from '../NotefulContext';
 import PropTypes from 'prop-types'
-import '../AddFolder/addFolder.css'
+import './AddFolder.css'
 
 
 export default class AddFolder extends Component {
+    static defaultProps = {
+        history: {
+            push: () => { }
+        }
+    }
 
  static contextType = NotefulContext
 
@@ -24,8 +29,8 @@ updateFolderName(name) {
     this.setState({folderName: {value: name, touched: true}})
 }
 
-handleSubmit(event) {
-    event.preventDefault();
+handleSubmit = e => {
+    e.preventDefault();
     const { folderName } = this.state;
     const folderToAdd = {
     name: folderName.value
