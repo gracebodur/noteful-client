@@ -2,7 +2,7 @@ import React from 'react'
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
 import { findNote } from '../notes-helpers'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import './NotePageMain.css'
 
 export default class NotePageMain extends React.Component {
@@ -28,6 +28,7 @@ export default class NotePageMain extends React.Component {
           id={note.id}
           name={note.name}
           modified={note.modified}
+          content={note.content}
           onDeleteNote={this.handleDeleteNote}
         />
         <div className='NotePageMain__content'>
@@ -40,8 +41,8 @@ export default class NotePageMain extends React.Component {
   }
 }
 
-NotePageMain.propTypes = {
-  history: PropTypes.object,
-  location: PropTypes.object,
-  match: PropTypes.object
-}
+// NotePageMain.propTypes = {
+//   history: PropTypes.object,
+//   location: PropTypes.object,
+//   match: PropTypes.object
+// }

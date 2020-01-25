@@ -1,5 +1,6 @@
 {
   "name": "noteful-client",
+  "alias": "gracebodur-noteful-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
