@@ -3,7 +3,13 @@
     "alias": "gracebodur-noteful-client",
     "name": "noteful-client",
     "routes": [
-        { "handle": "filesystem" },
-        { "src": "/.*", "dest": "/index.html" }
+        {
+            "src": "^/static/(.*)",
+            "dest": "/static/$1"
+          },
+          {
+            "src": ".*",
+            "dest": "/index.html"
+          }
     ]
   }
