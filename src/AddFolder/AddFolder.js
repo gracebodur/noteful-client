@@ -58,11 +58,7 @@ return (
             id= "Add-folder-name" />
         <br />
 
-        <button 
-            type="submit" 
-            className="Add-folder-button" >
-        Add Folder
-        </button>
+        <button type="submit">Add Folder</button>
     </div>
     </NotefulForm>
     </section>

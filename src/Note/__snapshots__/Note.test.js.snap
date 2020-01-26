@@ -9,7 +9,7 @@ exports[`Note component renders a .Note by default 1`] = `
   >
     <Link
       replace={false}
-      to="/note/undefined"
+      to="/notes/undefined"
     />
   </h2>
   <button
@@ -66,7 +66,7 @@ exports[`Note component renders the Note given props 1`] = `
   >
     <Link
       replace={false}
-      to="/note/a"
+      to="/notes/a"
     >
       test-class-name
     </Link>

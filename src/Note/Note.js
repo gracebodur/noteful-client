@@ -4,7 +4,6 @@ import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NotefulContext from '../NotefulContext'
 import config from '../config'
-import PropTypes from 'prop-types'
 import './Note.css'
 
 export default class Note extends React.Component {
@@ -43,7 +42,7 @@ export default class Note extends React.Component {
     return (
       <div className='Note'>
         <h2 className='Note__title'>
-          <Link to={`/note/${id}`}>
+          <Link to={`/notes/${id}`}>
             {name}
           </Link>
         </h2>
@@ -68,14 +67,4 @@ export default class Note extends React.Component {
       </div>
     )
   }
-}
-
-Note.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    onDelete: PropTypes.func,
-    modified: PropTypes.oneOfType([ PropTypes.string, PropTypes.number])
-  })
-  )
 }

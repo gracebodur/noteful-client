@@ -2,7 +2,6 @@ import React from 'react'
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
 import { findNote } from '../notes-helpers'
-// import PropTypes from 'prop-types'
 import './NotePageMain.css'
 
 export default class NotePageMain extends React.Component {
@@ -14,22 +13,22 @@ export default class NotePageMain extends React.Component {
 
   static contextType = NotefulContext
 
-  handleDeleteNote = id => {
+  handleDeleteNote = noteid => {
     this.props.history.push(`/`)
   }
 
   render() {
     const { notes=[] } = this.context
-    const { noteId } = this.props.match.params
-    const note = findNote(notes, noteId) || { content: '' }
+    const { noteid } = this.props.match.params
+    const note = findNote(notes, noteid) || { content: '' }
     return (
       <section className='NotePageMain'>
         <Note
-          id={note.id}
+          noteid={note.id}
           name={note.name}
           modified={note.modified}
           content={note.content}
-          onDeleteNote={this.handleDeleteNote}
+          onDeleteNote={(e) => this.handleDeleteNote(e)}
         />
         <div className='NotePageMain__content'>
           {note.content.split(/\n \r|\n/).map((para, i) =>
@@ -41,8 +40,3 @@ export default class NotePageMain extends React.Component {
   }
 }
 
-// NotePageMain.propTypes = {
-//   history: PropTypes.object,
-//   location: PropTypes.object,
-//   match: PropTypes.object
-// }
