@@ -1,2 +1,2 @@
 # Noteful Client
-https://react-noteful-client.gracebodur.now.sh/
+ https://gracebodur-noteful-client.now.sh
