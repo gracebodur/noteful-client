@@ -15,32 +15,31 @@ export default class AddNote extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const newNote = {
-            note_name: e.target['note-name'].value,
-            modified: new Date (),
-            folderId: e.target['note-folder-Id'].value,
-            content: e.target['note-content'].value,            
+          note_name: e.target['note-name'].value,
+          modified: new Date(),
+          folderid: e.target['note-folder-id'].value,
+          content: e.target['note-content'].value,
         }
         fetch(`${config.API_ENDPOINT}/notes`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newNote)
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(newNote),
         })
-        .then(response => {
-            if(!response.ok){
-              return response.json().then(e=>Promise.reject(e))
-            }
-            return response.json()
+          .then(res => {
+            if (!res.ok)
+              return res.json().then(e => Promise.reject(e))
+            return res.json()
           })
           .then(note => {
-              this.context.addnote(note)
-              this.props.history.push(`/notes/${note.id}`)
+            this.context.addNote(note)
+            this.props.history.push(`/notes/${note.noteid}`)
           })
           .catch(error => {
-              console.log({error})
+            console.error({ error })
           })
-    }
+      }
 
     render() {
        const { folders = [] } = this.context
@@ -50,7 +49,7 @@ export default class AddNote extends Component {
             <NotefulForm  onSubmit={this.handleSubmit}>
             <div className="form-group">
                 <label 
-                    htmlFor='note-name' 
+                    htmlFor='note-name-input' 
                     className='Add-note-text'>
                     Name
                 </label>
@@ -60,43 +59,40 @@ export default class AddNote extends Component {
                     className='Add-note-input'
                     type = 'text' 
                     name='note-name' 
-                    id = 'note-name' 
+                    id = 'note-name-input' 
                 />
                 </div>
 
                 <div className="form-group">
                     <label 
-                    htmlFor='content-name'>
+                    htmlFor='note-content'>
                     Content
                     </label>
-                    <br />
 
                     <textarea
                         className='Add-note-content-text'
                         name='content-name' 
-                        id='content-name' />
+                        id='note-content' />
                 </div>
 
                 <div className='form-group'>
-                <label htmlFor= 'folder-select'>
+                <label htmlFor= 'note-folder-select'>
                     Choose a folder
                 </label> 
-                <br />
-
                 <select
-                    id = 'folder-select' 
-                    name='folder-select'> 
-                <option 
-                    key={folders.id} 
-                    value={folders.id}>
-                        {folders.folder_name}
+                    id = 'note-folder-select' 
+                    name='note-folder-id'> 
+                <option value={null}>...</option>
+                    {folders.map(folder =>
+                <option key={folder.folderid} value={folder.folderid}>
+                    {folder.folder_name}
                 </option>
                 )}
                 </select>
                 </div>
                 <br />
                 <div >
-                <button type = 'submit'>AddNote</button>
+                <button type ='submit'>AddNote</button>
                 </div>
                 </NotefulForm>
             </section>

@@ -28,12 +28,12 @@ handleSubmit = e => {
     })
     .then(res => {
         if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
+        return res.json().then(e => Promise.reject(e))
         return res.json()
     })
     .then(folder => {
         this.context.addFolder(folder)
-        this.props.history.push(`/folders/${folder.id}`)
+        this.props.history.push(`/folders/${folder.folderid}`)
       })
       .catch(error => {
         console.error({ error })
@@ -44,7 +44,7 @@ render() {
 return (
     <section className="Add-folder">
     <h2>Create Folder</h2>
-    <NotefulForm  onSubmit={e => this.handleSubmit(e)}>
+    <NotefulForm  onSubmit={this.handleSubmit}>
     <div className="form-group">
         <label htmlFor="Add-folder-name">
             Name
