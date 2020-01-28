@@ -66,10 +66,8 @@ exports[`Note component renders the Note given props 1`] = `
   >
     <Link
       replace={false}
-      to="/notes/a"
-    >
-      test-class-name
-    </Link>
+      to="/notes/undefined"
+    />
   </h2>
   <button
     className="Note__delete"
