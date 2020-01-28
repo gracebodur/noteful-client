@@ -6,7 +6,6 @@ import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import NotefulContext from '../NotefulContext'
-// import RouteError from '../RouteError/RouteError'
 import AddFolder from '../AddFolder/AddFolder'
 import AddNote from '../AddNote/AddNote'
 import config from '../config'
