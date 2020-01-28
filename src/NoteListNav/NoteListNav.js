@@ -8,8 +8,8 @@ import PropTypes from 'prop-types'
 import './NoteListNav.css'
 
 export default class NoteListNav extends React.Component {
-
   static contextType = NotefulContext;
+
   render() {
     const { folders=[], notes=[] } = this.context
 
@@ -17,15 +17,15 @@ export default class NoteListNav extends React.Component {
       <div className='NoteListNav'>
         <ul className='NoteListNav__list'>
           {folders.map(folder =>
-            <li key={folder.id}>
+            <li key={folder.folderid}>
               <NavLink
                 className='NoteListNav__folder-link'
-                to={`/folder/${folder.id}`}
+                to={`/folders/${folder.folderid}`}
               >
                 <span className='NoteListNav__num-notes'>
-                  {countNotesForFolder(notes, folder.id)}
+                  {countNotesForFolder(notes, folder.folderid)}
                 </span>
-                {folder.name}
+                {folder.folder_name}
               </NavLink>
             </li>
           )}

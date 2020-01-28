@@ -6,7 +6,7 @@ import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import NotefulContext from '../NotefulContext'
-import RouteError from '../RouteError/RouteError'
+// import RouteError from '../RouteError/RouteError'
 import AddFolder from '../AddFolder/AddFolder'
 import AddNote from '../AddNote/AddNote'
 import config from '../config'
@@ -19,24 +19,27 @@ class App extends Component {
     };
 
     componentDidMount() {
-        Promise.all([
-            fetch(`${config.API_ENDPOINT}/notes`),
-            fetch(`${config.API_ENDPOINT}/folders`)
-        ])
-            .then(([notesRes, foldersRes]) => {
-                if (!notesRes.ok)
-                    return notesRes.json().then(e => Promise.reject(e));
-                if (!foldersRes.ok)
-                    return foldersRes.json().then(e => Promise.reject(e));
-
-                return Promise.all([notesRes.json(), foldersRes.json()]);
-            })
-            .then(([notes, folders]) => {
-                this.setState({notes, folders});
-            })
-            .catch(error => {
-                console.error({error});
-            });
+      Promise.all([
+        fetch(`${config.API_ENDPOINT}/notes`),
+        fetch(`${config.API_ENDPOINT}/folders`)
+      ])
+        .then(([notesRes, foldersRes]) => {
+          if (!notesRes.ok)
+            return notesRes.json().then(e => Promise.reject(e))
+          if (!foldersRes.ok)
+            return foldersRes.json().then(e => Promise.reject(e))
+  
+          return Promise.all([
+            notesRes.json(),
+            foldersRes.json(),
+          ])
+        })
+        .then(([notes, folders]) => {
+          this.setState({ notes, folders })
+        })
+        .catch(error => {
+          console.error({ error })
+        })
     }
 
     handleAddFolder = folder => {
@@ -65,8 +68,8 @@ class App extends Component {
 
     renderNavRoutes() {
         return (
-          <RouteError>
-            {['/', '/folders/:folderid'].map(path =>
+          <>
+            {['/', 'api/folders/:folderid'].map(path =>
               <Route
                 exact
                 key={path}
@@ -86,13 +89,13 @@ class App extends Component {
               path='/add-note'
               component={NotePageNav}
             />
-          </RouteError>
+          </>
         )
       }
 
     renderMainRoutes() {
         return (
-            <RouteError>
+            <>
                 {['/', '/folders/:folderId'].map(path => (
                     <Route
                         exact
@@ -104,7 +107,7 @@ class App extends Component {
                 <Route path="/note/:noteId" component={NotePageMain} />
                 <Route path="/add-folder" component={AddFolder} />
                 <Route path="/add-note" component={AddNote} />
-            </RouteError>
+            </>
         );
     }
 

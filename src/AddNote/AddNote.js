@@ -11,6 +11,27 @@ export default class AddNote extends Component {
         },
     }
     static contextType = NotefulContext
+
+    constructor() {
+      super();
+      this.state = {
+        name: "",
+        content: "",
+        folderid: "",
+      }
+    }
+
+    updateName(name) {
+      this.setState({ name: { value: name, touched: true } })
+    }
+  
+    updateContent(content) {
+      this.setState({ content: { value: content, touched: true } })
+    }
+
+    updateFolderId(folderid) {
+      this.setState({folderid: { value: folderid, touched: true}})
+    }
   
     handleSubmit = e => {
         e.preventDefault()
@@ -46,20 +67,19 @@ export default class AddNote extends Component {
         return(
             <section className='Add-note'>
             <h2>Create Note</h2>
-            <NotefulForm  onSubmit={this.handleSubmit}>
+            <NotefulForm onSubmit={this.handleSubmit}>
             <div className="form-group">
                 <label 
                     htmlFor='note-name-input' 
                     className='Add-note-text'>
-                    Name
+                    Note name
                 </label>
-                <br />
-
+               
                 <input 
                     className='Add-note-input'
                     type = 'text' 
                     name='note-name' 
-                    id = 'note-name-input' 
+                    id = 'note-name-input'
                 />
                 </div>
 
@@ -72,7 +92,10 @@ export default class AddNote extends Component {
                     <textarea
                         className='Add-note-content-text'
                         name='content-name' 
-                        id='note-content' />
+                        id='note-content'
+                        aria-label="note contents"
+                        aria-required="true"
+                        onChange={e => this.updateContent(e.target.value)}/>
                 </div>
 
                 <div className='form-group'>
@@ -81,7 +104,10 @@ export default class AddNote extends Component {
                 </label> 
                 <select
                     id = 'note-folder-select' 
-                    name='note-folder-id'> 
+                    name='note-folder-id'
+                    aria-label="Select folder to place note"
+                    aria-required="true"
+                    required> 
                 <option value={null}>...</option>
                     {folders.map(folder =>
                 <option key={folder.folderid} value={folder.folderid}>
