@@ -62,14 +62,14 @@ class App extends Component {
 
     handleDeleteNote = noteId => {
         this.setState({
-            notes: this.state.notes.filter(note => note.id !== noteId)
+            notes: this.state.notes.filter(note => note.noteid !== noteId)
         });
     };
 
     renderNavRoutes() {
         return (
           <>
-            {['/', 'api/folders/:folderid'].map(path =>
+            {['/', '/folders/:folderid'].map(path =>
               <Route
                 exact
                 key={path}
@@ -96,7 +96,7 @@ class App extends Component {
     renderMainRoutes() {
         return (
             <>
-                {['/', '/folders/:folderId'].map(path => (
+                {['/', '/folders/:folderid'].map(path => (
                     <Route
                         exact
                         key={path}
@@ -104,7 +104,7 @@ class App extends Component {
                         component={NoteListMain}
                     />
                 ))}
-                <Route path="/note/:noteId" component={NotePageMain} />
+                <Route path="/notes/:noteid" component={NotePageMain} />
                 <Route path="/add-folder" component={AddFolder} />
                 <Route path="/add-note" component={AddNote} />
             </>

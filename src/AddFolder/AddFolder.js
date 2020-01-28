@@ -4,7 +4,6 @@ import NotefulContext from '../NotefulContext';
 import config from '../config';
 import './AddFolder.css'
 
-
 export default class AddFolder extends Component {
     static defaultProps = {
         history: {
@@ -43,7 +42,7 @@ handleSubmit = e => {
 render() { 
 return (
     <section className="Add-folder">
-    <h2>Create Folder</h2>
+    <h2>Create a folder</h2>
     <NotefulForm  onSubmit={this.handleSubmit}>
     <div className="form-group">
         <label htmlFor="Add-folder-name">
